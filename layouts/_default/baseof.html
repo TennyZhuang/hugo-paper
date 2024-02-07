@@ -38,8 +38,11 @@
   style="--bg: {{ $bg_color }}"
   lang="{{ or site.LanguageCode site.Language.Lang }}"
 >
+  {{- partial "hugopress/head-begin.html" . }}
   {{ partial "head.html" . }}
-  <body class="text-black duration-200 ease-out dark:text-white">
+  {{- partial "hugopress/head-end.html" . }}
+  <body class="text-black duration-200 ease-out dark:text-white" {{ partial "hugopress/body-attributes" . | safeHTMLAttr -}}>
+    {{- partial "hugopress/body-begin.html" . }}
     {{ partial "header.html" . }}
 
     <main
@@ -49,5 +52,6 @@
     </main>
 
     {{ partial "footer.html" . }}
+    {{- partial "hugopress/body-end.html" . }}
   </body>
 </html>
